@@ -30,7 +30,7 @@ public class TwitterClient extends OAuthBaseClient {
 	public static final String FALLBACK_URL = "https://codepath.github.io/android-rest-client-template/success.html";
 
 	// See https://developer.chrome.com/multidevice/android/intents
-	public static final String REST_CALLBACK_URL_TEMPLATE = "intent://";
+	public static final String REST_CALLBACK_URL_TEMPLATE = "intent://%s#Intent;action=android.intent.action.VIEW;scheme=%s;package=%s;S.browser_fallback_url=%s;end";
 
 	public TwitterClient(Context context) {
 		super(context, REST_API_INSTANCE,
