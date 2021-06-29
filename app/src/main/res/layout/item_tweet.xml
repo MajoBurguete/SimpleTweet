@@ -22,17 +22,51 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/ivProfileImage"
+        android:layout_marginTop="2dp"
+        android:layout_toEndOf="@+id/tvName"
+        android:textSize="12sp"
         tools:text="rpandev1234" />
 
     <TextView
         android:id="@+id/tvBody"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvScreenName"
+        android:layout_below="@+id/tvName"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_toEndOf="@+id/ivProfileImage"
+        tools:text="ths is my tweet!" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_marginStart="5dp"
         android:layout_marginTop="2dp"
         android:layout_toEndOf="@+id/ivProfileImage"
-        tools:text="ths is my tweet!" />
+        android:textSize="12sp"
+        tools:text="Developer" />
+
+    <TextView
+        android:id="@+id/tvRelative"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="2dp"
+        android:layout_toEndOf="@+id/dot"
+        android:textSize="12sp"
+        tools:text="5min" />
+
+    <TextView
+        android:id="@+id/dot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="1dp"
+        android:layout_toEndOf="@+id/tvScreenName"
+        android:text="·"
+        android:textSize="12sp" />
 </RelativeLayout>
