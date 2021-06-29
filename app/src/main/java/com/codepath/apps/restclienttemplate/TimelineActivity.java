@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -63,7 +64,8 @@ public class TimelineActivity extends AppCompatActivity {
             finish();
         } else if (item.getItemId() == R.id.New){
             // Compose icon has been selected
-            Toast.makeText(this, "Compose clicked", Toast.LENGTH_SHORT).show();
+            Intent intentC = new Intent(this, ComposeActivity.class);
+            startActivity(intentC);
             // Navigate to the compose activity
         }
         return true;
