@@ -8,6 +8,7 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
+        vectorDrawables.useSupportLibrary = true
         applicationId "com.codepath.apps.restclienttemplate"
         minSdkVersion 21
         targetSdkVersion 28

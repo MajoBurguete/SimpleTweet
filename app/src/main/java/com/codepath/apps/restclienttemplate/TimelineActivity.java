@@ -1,9 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ShareActionProvider;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -11,11 +9,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
-import com.github.scribejava.apis.TwitterApi;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,6 +61,10 @@ public class TimelineActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.logout){
             client.clearAccessToken();
             finish();
+        } else if (item.getItemId() == R.id.New){
+            // Compose icon has been selected
+            Toast.makeText(this, "Compose clicked", Toast.LENGTH_SHORT).show();
+            // Navigate to the compose activity
         }
         return true;
     }
