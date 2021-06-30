@@ -19,6 +19,9 @@ public class Tweet {
     public String body;
     public String createdAt;
     public User user;
+    public String image;
+    public int height;
+    public int width;
     private static final int SECOND_MILLIS = 1000;
     private static final int MINUTE_MILLIS = 60 * SECOND_MILLIS;
     private static final int HOUR_MILLIS = 60 * MINUTE_MILLIS;
@@ -61,11 +64,22 @@ public class Tweet {
         return "";
     }
 
-    public  static Tweet fromJson(JSONObject jsonObject) throws JSONException {
+    public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
         tweet.body = jsonObject.getString("text");
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
+        if (!jsonObject.isNull("extended_entities")){
+            JSONObject media = jsonObject.getJSONObject("extended_entities").getJSONArray("media").getJSONObject(0);
+            Log.d("Tweet_media", "fromJson: " + media);
+            tweet.image = media.getString("media_url_https");
+            tweet.height = media.getJSONObject("sizes").getJSONObject("large").getInt("h");
+            tweet.width = media.getJSONObject("sizes").getJSONObject("large").getInt("w");
+        } else {
+            tweet.image = "";
+            tweet.height = 0;
+            tweet.width = 0;
+        }
         return tweet;
     }
 

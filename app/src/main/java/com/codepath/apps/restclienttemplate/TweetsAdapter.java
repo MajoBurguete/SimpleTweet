@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
 
 import org.jetbrains.annotations.NotNull;
@@ -52,6 +53,15 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
         return tweets.size();
     }
 
+    public void clear(){
+        tweets.clear();
+    }
+
+    public void addAll(List<Tweet> list){
+        tweets.addAll(list);
+        notifyDataSetChanged();
+    }
+
 
     // Define a view holder
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -61,6 +71,7 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
         TextView tvScreenName;
         TextView tvName;
         TextView tvRelative;
+        ImageView ivTweetImage;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -69,6 +80,7 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvName = itemView.findViewById(R.id.tvName);
             tvRelative = itemView.findViewById(R.id.tvRelative);
+            ivTweetImage = itemView.findViewById(R.id.ivTweetImage);
 
         }
 
@@ -76,6 +88,12 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
             tvBody.setText(tweet.body);
             tvScreenName.setText("@" + tweet.user.screenName);
             Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+            if (!tweet.image.isEmpty()){
+                ivTweetImage.setVisibility(View.VISIBLE);
+                ivTweetImage.getLayoutParams().height = tweet.height;
+                ivTweetImage.getLayoutParams().width = tweet.width;
+                Glide.with(context).load(tweet.image).transform(new RoundedCorners(40)).into(ivTweetImage);
+            }
             tvName.setText(tweet.user.name);
             String time = tweet.getRelativeTimeAgo(tweet.createdAt);
             tvRelative.setText(time);

@@ -7,6 +7,10 @@ apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
 android {
     compileSdkVersion 28
 
+    buildFeatures {
+        viewBinding true
+    }
+
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
         applicationId "com.codepath.apps.restclienttemplate"
@@ -54,4 +58,5 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0-alpha02'
     implementation 'org.parceler:parceler-api:1.1.12'
     annotationProcessor 'org.parceler:parceler:1.1.12'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
 }
