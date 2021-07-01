@@ -1,6 +1,7 @@
 package com.codepath.apps.restclienttemplate;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,6 +110,11 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
             Glide.with(context).load(tweet.user.profileImageUrl).circleCrop().into(ivProfileImage);
             Glide.with(context).load(tweet.image).transform(new RoundedCorners(40)).into(ivTweetImage);
             tvName.setText(tweet.user.name);
+            if (tweet.favorited){
+                ibLike.setImageResource(R.drawable.ic_vector_heart);
+            } else{
+                ibLike.setImageResource(R.drawable.ic_vector_heart_stroke);
+            }
             String time = tweet.getRelativeTimeAgo(tweet.createdAt);
             tvRelative.setText(time);
             cvTweet.setOnClickListener(new View.OnClickListener() {
