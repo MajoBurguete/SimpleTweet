@@ -17,7 +17,7 @@
         android:layout_below="@+id/btnCancel"
         android:layout_alignParentStart="true"
         android:layout_marginStart="6dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         tools:srcCompat="@tools:sample/avatars" />
 
 
@@ -29,7 +29,7 @@
         android:layout_alignParentEnd="true"
         android:layout_marginStart="5dp"
         android:layout_marginTop="14dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginEnd="4dp"
         android:layout_toEndOf="@+id/imageView"
         android:textColorHint="@color/gray"
         app:boxBackgroundColor="@color/twitter"
