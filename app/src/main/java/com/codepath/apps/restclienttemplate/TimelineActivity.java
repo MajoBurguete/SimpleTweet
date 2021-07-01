@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.apps.restclienttemplate.models.User;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 
 import org.json.JSONArray;
@@ -32,6 +33,7 @@ public class TimelineActivity extends AppCompatActivity implements TweetsAdapter
 
     public static final String TAG = "TimelineActivity";
     TwitterClient client;
+    User superUser;
     RecyclerView rvTweets;
     List<Tweet> tweets;
     TweetsAdapter adapter;
@@ -55,6 +57,21 @@ public class TimelineActivity extends AppCompatActivity implements TweetsAdapter
         });
 
         client = TwitterApp.getRestClient(this);
+        client.getAccount(new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                try {
+                    superUser = User.fromJson(json.jsonObject);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+
+            }
+        });
         // Find the recycler view
         rvTweets = findViewById(R.id.rvTweets);
         // Initialize the list of tweets and adpater
