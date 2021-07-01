@@ -26,7 +26,7 @@ import java.util.List;
 
 import okhttp3.Headers;
 
-public class TimelineActivity extends AppCompatActivity {
+public class TimelineActivity extends AppCompatActivity implements TweetsAdapter.OnClickListener{
 
     private final int REQUEST_CODE = 20;
 
@@ -44,7 +44,6 @@ public class TimelineActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         swipeContainer = findViewById(R.id.swipeContainer);
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -60,7 +59,7 @@ public class TimelineActivity extends AppCompatActivity {
         rvTweets = findViewById(R.id.rvTweets);
         // Initialize the list of tweets and adpater
         tweets = new ArrayList<>();
-        adapter = new TweetsAdapter(this, tweets);
+        adapter = new TweetsAdapter(this, tweets, this);
         //Recycler view setup : layout manager and adapter
         rvTweets.setLayoutManager(new LinearLayoutManager(this));
         rvTweets.setAdapter(adapter);
@@ -123,5 +122,13 @@ public class TimelineActivity extends AppCompatActivity {
                 Log.i(TAG, "onFailure: OnFailure!" + response, throwable);
             }
         });
+    }
+
+    @Override
+    public void onItemClicked(int position) {
+        Log.i(TAG, "onItemClicked: yesss");
+        Intent t = new Intent(TimelineActivity.this, DetailActivity.class);
+        t.putExtra("tweet", Parcels.wrap( tweets.get(position)));
+        startActivity(t);
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.google.android.material.card.MaterialCardView;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -22,11 +24,17 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
 
     Context context;
     List<Tweet> tweets;
+    OnClickListener interactionClickListener;
+
+    public interface OnClickListener{
+        void onItemClicked(int position);
+    }
 
     // Pass in the context and list of tweets
-    public TweetsAdapter(Context context, List<Tweet> tweets) {
+    public TweetsAdapter(Context context, List<Tweet> tweets, OnClickListener clickListener) {
         this.context = context;
         this.tweets = tweets;
+        this.interactionClickListener = clickListener;
     }
 
     // For each row, inflate the layout
@@ -66,6 +74,7 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
     // Define a view holder
     public class ViewHolder extends RecyclerView.ViewHolder{
 
+        MaterialCardView cvTweet;
         ImageView ivProfileImage;
         TextView tvBody;
         TextView tvScreenName;
@@ -81,6 +90,7 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
             tvName = itemView.findViewById(R.id.tvName);
             tvRelative = itemView.findViewById(R.id.tvRelative);
             ivTweetImage = itemView.findViewById(R.id.ivTweetImage);
+            cvTweet = itemView.findViewById(R.id.cvTweet);
 
         }
 
@@ -89,11 +99,15 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
             tvScreenName.setText("@" + tweet.user.screenName);
             Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
             Glide.with(context).load(tweet.image).transform(new RoundedCorners(40)).into(ivTweetImage);
-            /*ivTweetImage.getLayoutParams().height = tweet.height;
-            ivTweetImage.getLayoutParams().width = tweet.width;*/
             tvName.setText(tweet.user.name);
             String time = tweet.getRelativeTimeAgo(tweet.createdAt);
             tvRelative.setText(time);
+            cvTweet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    interactionClickListener.onItemClicked(getAdapterPosition());
+                }
+            });
 
         }
     }

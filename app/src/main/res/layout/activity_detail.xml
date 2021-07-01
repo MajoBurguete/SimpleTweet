@@ -1,10 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/twitter"
     tools:context=".DetailActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarDet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/twitter"
+        android:fitsSystemWindows="true"
+        android:minHeight="?attr/actionBarSize"
+        android:textAlignment="center"
+        app:titleTextColor="@android:color/white">
+
+        <TextView
+            android:id="@+id/titleTweet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/helvetica75bold"
+            android:gravity="center_horizontal"
+            android:text="@string/tweet"
+            android:textColor="@color/white"
+            android:textSize="16sp">
+
+        </TextView>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/darkTwitter"
+        android:layout_below="@id/toolbarDet">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/twitter">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:paddingBottom="15dp">
+
+                    <ImageView
+                        android:id="@+id/ivProfPic"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="13dp"
+                        android:layout_marginTop="15dp"
+                        tools:srcCompat="@tools:sample/avatars" />
+
+                    <TextView
+                        android:id="@+id/tvUserN"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_toEndOf="@+id/ivProfPic"
+                        android:fontFamily="@font/helvetica75bold"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        tools:text="5SOS " />
+
+                    <TextView
+                        android:id="@+id/tvUserS"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvUserN"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_toEndOf="@+id/ivProfPic"
+                        android:fontFamily="@font/helvetica55roman"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        tools:text="5SOSMX" />
+
+                    <TextView
+                        android:id="@+id/tvTweetB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvUserS"
+                        android:layout_marginTop="21dp"
+                        android:fontFamily="@font/helvetica55roman"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        tools:text="Ashton diciendo que es un milagro experimentar la vida con  nosotrxs" />
+
+                    <ImageView
+                        android:id="@+id/ivImageA"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tvTweetB"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="12dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        tools:srcCompat="@tools:sample/avatars" />
+
+                    <ImageButton
+                        android:id="@+id/ibAnswer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ivImageA"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="70dp"
+                        android:layout_marginTop="5dp"
+                        android:backgroundTint="#00FFFFFF"
+                        android:tint="@color/icon"
+                        app:srcCompat="@drawable/vector_compose_dm_fab" />
+
+                    <ImageButton
+                        android:id="@+id/ibRetweet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ivImageA"
+                        android:layout_marginStart="42dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@+id/ibAnswer"
+                        android:backgroundTint="#00FFFFFF"
+                        android:tint="@color/icon"
+                        app:srcCompat="@drawable/ic_vector_retweet" />
+
+                    <ImageButton
+                        android:id="@+id/ibLike"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ivImageA"
+                        android:layout_marginStart="42dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_toEndOf="@+id/ibRetweet"
+                        android:backgroundTint="#00FFFFFF"
+                        android:tint="@color/icon"
+                        app:srcCompat="@drawable/ic_vector_heart_stroke" />
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/darkTwitter">
+
+                    <ImageView
+                        android:id="@+id/ivReplyPP"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
+                        tools:srcCompat="@tools:sample/avatars" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/tiReply"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@id/ivReplyPP"
+                        android:textColorHint="@color/gray"
+                        app:boxStrokeColor="@color/icon"
+                        app:counterEnabled="true"
+                        app:counterOverflowTextColor="@color/twitter"
+                        app:counterTextColor="@color/white"
+                        app:hintTextColor="@color/gray">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/twitter"
+                            android:fontFamily="@font/helvetica55roman"
+                            android:hint="Tweet your reply"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
 
 </RelativeLayout>

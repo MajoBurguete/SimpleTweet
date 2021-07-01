@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/twitter"
     android:fitsSystemWindows="true"
-    tools:context=".TimelineActivity">
+    tools:context=".TimelineActivity"
+    android:background="@color/twitter">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
@@ -37,10 +37,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:background="@color/twitter"
         android:fitsSystemWindows="true"
         android:minHeight="?attr/actionBarSize"
         app:logo="@drawable/ic_logo_blue"
-        app:popupTheme="@color/twitter"
         app:titleTextColor="@android:color/white" />
 
 

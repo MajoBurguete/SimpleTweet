@@ -9,6 +9,7 @@
     >
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvTweet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
@@ -107,7 +108,7 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageButton
-                android:id="@+id/imageButton4"
+                android:id="@+id/ibAnswer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ivTweetImage"
@@ -119,25 +120,25 @@
                 app:srcCompat="@drawable/vector_compose_dm_fab" />
 
             <ImageButton
-                android:id="@+id/imageButton5"
+                android:id="@+id/ibRetweet"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ivTweetImage"
                 android:layout_marginStart="42dp"
                 android:layout_marginTop="5dp"
-                android:layout_toEndOf="@+id/imageButton4"
+                android:layout_toEndOf="@+id/ibAnswer"
                 android:backgroundTint="#00FFFFFF"
                 android:tint="@color/icon"
                 app:srcCompat="@drawable/ic_vector_retweet" />
 
             <ImageButton
-                android:id="@+id/imageButton6"
+                android:id="@+id/ibLike"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ivTweetImage"
                 android:layout_marginStart="42dp"
                 android:layout_marginTop="5dp"
-                android:layout_toEndOf="@+id/imageButton5"
+                android:layout_toEndOf="@+id/ibRetweet"
                 android:backgroundTint="#00FFFFFF"
                 android:tint="@color/icon"
                 app:srcCompat="@drawable/ic_vector_heart_stroke" />

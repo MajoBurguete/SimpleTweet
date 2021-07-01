@@ -17,11 +17,12 @@ import java.util.Locale;
 public class Tweet {
 
     public String body;
+    public String tweetId;
     public String createdAt;
     public User user;
     public String image;
-    public int height;
-    public int width;
+    public int retweetC;
+    public int favoriteC;
     private static final int SECOND_MILLIS = 1000;
     private static final int MINUTE_MILLIS = 60 * SECOND_MILLIS;
     private static final int HOUR_MILLIS = 60 * MINUTE_MILLIS;
@@ -66,20 +67,22 @@ public class Tweet {
 
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
-        tweet.body = jsonObject.getString("text");
+        if(jsonObject.has("full_text")){
+            tweet.body = jsonObject.getString("full_text");
+        }else{
+            tweet.body = jsonObject.getString("text");
+        }
+        tweet.tweetId = jsonObject.getString("id_str");
+        tweet.retweetC = jsonObject.getInt("retweet_count");
+        tweet.favoriteC = jsonObject.getInt("favorite_count");
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
-
         JSONObject entities = jsonObject.getJSONObject("entities");
 
         if (entities.has("media")) {
             tweet.image = entities.getJSONArray("media").getJSONObject(0).getString("media_url_https");
-            tweet.height = entities.getJSONArray("media").getJSONObject(0).getJSONObject("sizes").getJSONObject("large").getInt("h");
-            tweet.width = entities.getJSONArray("media").getJSONObject(0).getJSONObject("sizes").getJSONObject("large").getInt("w");
         } else {
             tweet.image = "";
-            tweet.height = 0;
-            tweet.width = 0;
         }
 
         return tweet;
