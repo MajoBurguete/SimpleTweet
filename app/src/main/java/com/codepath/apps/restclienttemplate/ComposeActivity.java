@@ -11,8 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.codepath.apps.restclienttemplate.databinding.ActivityComposeBinding;
 import com.codepath.apps.restclienttemplate.models.Tweet;
+import com.codepath.apps.restclienttemplate.models.User;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -26,6 +28,7 @@ public class ComposeActivity extends AppCompatActivity {
     public static final String TAG = "ComposeActivity";
     public static final int MAX_TWEET_LENGTH = 280;
     TwitterClient client;
+    User superUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +37,11 @@ public class ComposeActivity extends AppCompatActivity {
         View view =  binding.getRoot();
         setContentView(view);
 
+        superUser = Parcels.unwrap(getIntent().getParcelableExtra("superUser"));
         client = TwitterApp.getRestClient(this);
 
         binding.etInputL.setCounterMaxLength(MAX_TWEET_LENGTH);
+        Glide.with(this).load(superUser.profileImageUrl).circleCrop().into(binding.imageView);
         // Set a click listener on button
         binding.btnTweet.setOnClickListener(new View.OnClickListener() {
             @Override
