@@ -25,6 +25,7 @@ import okhttp3.Headers;
 
 public class ComposeActivity extends AppCompatActivity {
 
+    private final int REQUEST_CODE_COMPOSE = 20;
     public static final String TAG = "ComposeActivity";
     public static final int MAX_TWEET_LENGTH = 280;
     TwitterClient client;
