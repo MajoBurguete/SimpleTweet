@@ -17,12 +17,14 @@ import java.util.Locale;
 public class Tweet {
 
     public String body;
-    public String tweetId;
+    public long tweetId;
     public String createdAt;
     public User user;
     public String image;
     public int retweetC;
     public int favoriteC;
+    public boolean favorited;
+    public boolean retweeted;
     private static final int SECOND_MILLIS = 1000;
     private static final int MINUTE_MILLIS = 60 * SECOND_MILLIS;
     private static final int HOUR_MILLIS = 60 * MINUTE_MILLIS;
@@ -72,7 +74,7 @@ public class Tweet {
         }else{
             tweet.body = jsonObject.getString("text");
         }
-        tweet.tweetId = jsonObject.getString("id_str");
+        tweet.tweetId = jsonObject.getLong("id");
         tweet.retweetC = jsonObject.getInt("retweet_count");
         tweet.favoriteC = jsonObject.getInt("favorite_count");
         tweet.createdAt = jsonObject.getString("created_at");
@@ -84,7 +86,8 @@ public class Tweet {
         } else {
             tweet.image = "";
         }
-
+        tweet.favorited = jsonObject.getBoolean("favorited");
+        tweet.retweeted = jsonObject.getBoolean("retweeted");
         return tweet;
     }
 
