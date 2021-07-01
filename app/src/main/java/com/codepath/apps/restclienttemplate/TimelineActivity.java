@@ -97,6 +97,7 @@ public class TimelineActivity extends AppCompatActivity implements TweetsAdapter
         } else if (item.getItemId() == R.id.New){
             // Compose icon has been selected
             Intent intentC = new Intent(this, ComposeActivity.class);
+            intentC.putExtra("superUser",Parcels.wrap(superUser));
 
             startActivityForResult(intentC, REQUEST_CODE);
             // Navigate to the compose activity
@@ -146,6 +147,7 @@ public class TimelineActivity extends AppCompatActivity implements TweetsAdapter
         Log.i(TAG, "onItemClicked: yesss");
         Intent t = new Intent(TimelineActivity.this, DetailActivity.class);
         t.putExtra("tweet", Parcels.wrap( tweets.get(position)));
+        t.putExtra("superUser", Parcels.wrap(superUser));
         startActivity(t);
     }
 
