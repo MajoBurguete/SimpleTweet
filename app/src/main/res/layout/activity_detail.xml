@@ -165,6 +165,20 @@
                     android:layout_height="wrap_content"
                     android:background="@color/darkTwitter">
 
+                    <Button
+                        android:id="@+id/btnReply"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tiReply"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginEnd="15dp"
+                        android:backgroundTint="@color/icon"
+                        android:fontFamily="@font/helvetica55roman"
+                        android:text="Reply"
+                        android:textSize="10sp"
+                        app:cornerRadius="10dp" />
+
                     <ImageView
                         android:id="@+id/ivReplyPP"
                         android:layout_width="55dp"
