@@ -28,6 +28,10 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
 
     public interface OnClickListener{
         void onItemClicked(int position);
+        void onFavClick(int position);
+        void onRetweetClick(int position);
+        void onReplyClick(int position);
+
     }
 
     // Pass in the context and list of tweets
@@ -81,6 +85,9 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
         TextView tvName;
         TextView tvRelative;
         ImageView ivTweetImage;
+        ImageButton ibReply;
+        ImageButton ibRetweet;
+        ImageButton ibLike;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -91,7 +98,9 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
             tvRelative = itemView.findViewById(R.id.tvRelative);
             ivTweetImage = itemView.findViewById(R.id.ivTweetImage);
             cvTweet = itemView.findViewById(R.id.cvTweet);
-
+            ibReply = itemView.findViewById(R.id.ibReply);
+            ibRetweet = itemView.findViewById(R.id.ibRetweet);
+            ibLike = itemView.findViewById(R.id.ibLike);
         }
 
         public void bind(Tweet tweet) {
@@ -108,6 +117,25 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
                     interactionClickListener.onItemClicked(getAdapterPosition());
                 }
             });
+            ibReply.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    interactionClickListener.onReplyClick(getAdapterPosition());
+                }
+            });
+            ibRetweet.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    interactionClickListener.onRetweetClick(getAdapterPosition());
+                }
+            });
+            ibLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    interactionClickListener.onFavClick(getAdapterPosition());
+                }
+            });
+
 
         }
     }

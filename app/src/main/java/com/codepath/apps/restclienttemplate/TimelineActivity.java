@@ -131,4 +131,19 @@ public class TimelineActivity extends AppCompatActivity implements TweetsAdapter
         t.putExtra("tweet", Parcels.wrap( tweets.get(position)));
         startActivity(t);
     }
+
+    @Override
+    public void onFavClick(int position) {
+
+    }
+
+    @Override
+    public void onRetweetClick(int position) {
+
+    }
+
+    @Override
+    public void onReplyClick(int position) {
+
+    }
 }

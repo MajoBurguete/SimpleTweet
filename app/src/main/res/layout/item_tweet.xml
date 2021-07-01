@@ -108,7 +108,7 @@
                 tools:srcCompat="@tools:sample/avatars" />
 
             <ImageButton
-                android:id="@+id/ibAnswer"
+                android:id="@+id/ibReply"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ivTweetImage"
@@ -126,7 +126,7 @@
                 android:layout_below="@+id/ivTweetImage"
                 android:layout_marginStart="42dp"
                 android:layout_marginTop="5dp"
-                android:layout_toEndOf="@+id/ibAnswer"
+                android:layout_toEndOf="@+id/ibReply"
                 android:backgroundTint="#00FFFFFF"
                 android:tint="@color/icon"
                 app:srcCompat="@drawable/ic_vector_retweet" />
