@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
@@ -29,7 +30,8 @@ import okhttp3.Headers;
 
 public class TimelineActivity extends AppCompatActivity implements TweetsAdapter.OnClickListener{
 
-    private final int REQUEST_CODE = 20;
+    private final int REQUEST_CODE_COMPOSE = 20;
+    private final int REQUEST_CODE_REPLY = 21;
 
     public static final String TAG = "TimelineActivity";
     TwitterClient client;
@@ -99,7 +101,7 @@ public class TimelineActivity extends AppCompatActivity implements TweetsAdapter
             Intent intentC = new Intent(this, ComposeActivity.class);
             intentC.putExtra("superUser",Parcels.wrap(superUser));
 
-            startActivityForResult(intentC, REQUEST_CODE);
+            startActivityForResult(intentC, REQUEST_CODE_COMPOSE);
             // Navigate to the compose activity
         }
         return true;
@@ -107,7 +109,17 @@ public class TimelineActivity extends AppCompatActivity implements TweetsAdapter
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK){
+        if (requestCode == REQUEST_CODE_COMPOSE && resultCode == RESULT_OK){
+            // Get data from the intent (tweet)
+            Tweet tweet = Parcels.unwrap(data.getParcelableExtra("tweet"));
+            // Update the recycler view with this tweet
+            // Modify data source of tweets
+            tweets.add(0, tweet);
+            // Notify the adapter
+            adapter.notifyItemInserted(0);
+            rvTweets.smoothScrollToPosition(0);
+        }
+        if (requestCode == REQUEST_CODE_REPLY && resultCode == RESULT_OK){
             // Get data from the intent (tweet)
             Tweet tweet = Parcels.unwrap(data.getParcelableExtra("tweet"));
             // Update the recycler view with this tweet
@@ -148,12 +160,25 @@ public class TimelineActivity extends AppCompatActivity implements TweetsAdapter
         Intent t = new Intent(TimelineActivity.this, DetailActivity.class);
         t.putExtra("tweet", Parcels.wrap( tweets.get(position)));
         t.putExtra("superUser", Parcels.wrap(superUser));
-        startActivity(t);
+        startActivityForResult(t, REQUEST_CODE_REPLY);
     }
 
     @Override
     public void onFavClick(int position) {
+        Tweet tweet = tweets.get(position);
+        client.postFavorite(tweets.get(position).tweetId, tweets.get(position).favorited, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Headers headers, JSON json) {
+                tweet.favorited = !tweet.favorited;
+                tweets.set(position, tweet);
+                adapter.notifyItemChanged(position);
+            }
 
+            @Override
+            public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                Log.e(TAG, "onFailure onfavclick" + response, throwable);
+            }
+        });
     }
 
     @Override
