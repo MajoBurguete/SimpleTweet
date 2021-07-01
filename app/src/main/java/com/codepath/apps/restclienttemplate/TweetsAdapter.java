@@ -88,12 +88,9 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
             tvBody.setText(tweet.body);
             tvScreenName.setText("@" + tweet.user.screenName);
             Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
-            if (!tweet.image.isEmpty()){
-                ivTweetImage.setVisibility(View.VISIBLE);
-                ivTweetImage.getLayoutParams().height = tweet.height;
-                ivTweetImage.getLayoutParams().width = tweet.width;
-                Glide.with(context).load(tweet.image).transform(new RoundedCorners(40)).into(ivTweetImage);
-            }
+            Glide.with(context).load(tweet.image).transform(new RoundedCorners(40)).into(ivTweetImage);
+            /*ivTweetImage.getLayoutParams().height = tweet.height;
+            ivTweetImage.getLayoutParams().width = tweet.width;*/
             tvName.setText(tweet.user.name);
             String time = tweet.getRelativeTimeAgo(tweet.createdAt);
             tvRelative.setText(time);

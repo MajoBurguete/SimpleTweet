@@ -73,6 +73,7 @@ public class TimelineActivity extends AppCompatActivity {
         return true;
     }
 
+
     public boolean onOptionsItemSelected(MenuItem item){
         if (item.getItemId() == R.id.logout){
             client.clearAccessToken();
@@ -80,6 +81,7 @@ public class TimelineActivity extends AppCompatActivity {
         } else if (item.getItemId() == R.id.New){
             // Compose icon has been selected
             Intent intentC = new Intent(this, ComposeActivity.class);
+
             startActivityForResult(intentC, REQUEST_CODE);
             // Navigate to the compose activity
         }
@@ -118,7 +120,7 @@ public class TimelineActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
-                Log.i(TAG, "onSuccess: OnFailure!" + response, throwable);
+                Log.i(TAG, "onFailure: OnFailure!" + response, throwable);
             }
         });
     }

@@ -69,17 +69,19 @@ public class Tweet {
         tweet.body = jsonObject.getString("text");
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
-        if (!jsonObject.isNull("extended_entities")){
-            JSONObject media = jsonObject.getJSONObject("extended_entities").getJSONArray("media").getJSONObject(0);
-            Log.d("Tweet_media", "fromJson: " + media);
-            tweet.image = media.getString("media_url_https");
-            tweet.height = media.getJSONObject("sizes").getJSONObject("large").getInt("h");
-            tweet.width = media.getJSONObject("sizes").getJSONObject("large").getInt("w");
+
+        JSONObject entities = jsonObject.getJSONObject("entities");
+
+        if (entities.has("media")) {
+            tweet.image = entities.getJSONArray("media").getJSONObject(0).getString("media_url_https");
+            tweet.height = entities.getJSONArray("media").getJSONObject(0).getJSONObject("sizes").getJSONObject("large").getInt("h");
+            tweet.width = entities.getJSONArray("media").getJSONObject(0).getJSONObject("sizes").getJSONObject("large").getInt("w");
         } else {
             tweet.image = "";
             tweet.height = 0;
             tweet.width = 0;
         }
+
         return tweet;
     }
 

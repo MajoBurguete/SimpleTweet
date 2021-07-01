@@ -10,6 +10,7 @@
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
