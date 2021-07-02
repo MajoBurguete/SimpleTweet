@@ -89,6 +89,7 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
         ImageButton ibReply;
         ImageButton ibRetweet;
         ImageButton ibLike;
+        TextView tvReply;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -102,6 +103,7 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
             ibReply = itemView.findViewById(R.id.ibReply);
             ibRetweet = itemView.findViewById(R.id.ibRetweet);
             ibLike = itemView.findViewById(R.id.ibLike);
+            tvReply = itemView.findViewById(R.id.tvReply);
         }
 
         public void bind(Tweet tweet) {
@@ -114,6 +116,13 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
                 ibLike.setImageResource(R.drawable.ic_vector_heart);
             } else{
                 ibLike.setImageResource(R.drawable.ic_vector_heart_stroke);
+            }
+
+            if (tweet.reply){
+                tvReply.setVisibility(View.VISIBLE);
+                tvReply.setText("On reply to @" + tweet.mention + ":");
+            } else {
+                tvReply.setVisibility(View.GONE);
             }
             String time = tweet.getRelativeTimeAgo(tweet.createdAt);
             tvRelative.setText(time);
