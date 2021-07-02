@@ -23,8 +23,10 @@ public class Tweet {
     public String image;
     public int retweetC;
     public int favoriteC;
+    public String mention;
     public boolean favorited;
     public boolean retweeted;
+    public boolean reply;
     private static final int SECOND_MILLIS = 1000;
     private static final int MINUTE_MILLIS = 60 * SECOND_MILLIS;
     private static final int HOUR_MILLIS = 60 * MINUTE_MILLIS;
@@ -69,23 +71,36 @@ public class Tweet {
 
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
         Tweet tweet = new Tweet();
+        JSONObject entities = jsonObject.getJSONObject("entities");
+
         if(jsonObject.has("full_text")){
             tweet.body = jsonObject.getString("full_text");
         }else{
             tweet.body = jsonObject.getString("text");
+        }
+
+        if (jsonObject.has("in_reply_to_status_id_str") && jsonObject.getString("in_reply_to_status_id_str") != null){
+            if (entities.has("user_mentions") && entities.getJSONArray("user_mentions").length() > 0){
+                tweet.reply = true;
+                tweet.mention = entities.getJSONArray("user_mentions").getJSONObject(0).getString("screen_name");
+            } else{
+                tweet.mention = "";
+            }
+        } else {
+            tweet.reply = false;
         }
         tweet.tweetId = jsonObject.getLong("id");
         tweet.retweetC = jsonObject.getInt("retweet_count");
         tweet.favoriteC = jsonObject.getInt("favorite_count");
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
-        JSONObject entities = jsonObject.getJSONObject("entities");
 
         if (entities.has("media")) {
             tweet.image = entities.getJSONArray("media").getJSONObject(0).getString("media_url_https");
         } else {
             tweet.image = "";
         }
+
         tweet.favorited = jsonObject.getBoolean("favorited");
         tweet.retweeted = jsonObject.getBoolean("retweeted");
         return tweet;
