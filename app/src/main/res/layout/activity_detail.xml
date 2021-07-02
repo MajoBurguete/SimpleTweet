@@ -200,6 +200,7 @@
                         android:id="@+id/tiReply"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
                         android:layout_toEndOf="@id/ivReplyPP"
                         android:textColorHint="@color/gray"
                         app:boxStrokeColor="@color/icon"

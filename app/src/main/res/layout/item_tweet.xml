@@ -158,34 +158,6 @@
                 android:textSize="10sp"
                 android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/tvRetweetC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/ivTweetImage"
-                android:layout_marginStart="-5dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginBottom="4dp"
-                android:layout_toEndOf="@id/ibRetweet"
-                android:fontFamily="@font/helvetica55roman"
-                android:textColor="@android:color/white"
-                android:textSize="12sp"
-                tools:text="132" />
-
-            <TextView
-                android:id="@+id/tvLikeC"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/ivTweetImage"
-                android:layout_marginStart="-5dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginBottom="4dp"
-                android:layout_toEndOf="@id/ibLike"
-                android:fontFamily="@font/helvetica55roman"
-                android:textColor="@android:color/white"
-                android:textSize="12sp"
-                tools:text="132" />
-
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 </RelativeLayout>

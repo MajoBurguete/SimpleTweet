@@ -21,8 +21,6 @@ public class Tweet {
     public String createdAt;
     public User user;
     public String image;
-    public int retweetC;
-    public int favoriteC;
     public String mention;
     public boolean favorited;
     public boolean retweeted;
@@ -90,8 +88,6 @@ public class Tweet {
             tweet.reply = false;
         }
         tweet.tweetId = jsonObject.getLong("id");
-        tweet.retweetC = jsonObject.getInt("retweet_count");
-        tweet.favoriteC = jsonObject.getInt("favorite_count");
         tweet.createdAt = jsonObject.getString("created_at");
         tweet.user = User.fromJson(jsonObject.getJSONObject("user"));
 
