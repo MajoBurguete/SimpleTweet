@@ -48,9 +48,9 @@
                 android:id="@+id/tvBody"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/tvName"
+                android:layout_below="@+id/tvReply"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="5dp"
                 android:layout_toEndOf="@+id/ivProfileImage"
                 android:fontFamily="@font/helvetica55roman"
                 android:textColor="#FFFFFF"
@@ -142,6 +142,22 @@
                 android:backgroundTint="#00FFFFFF"
                 android:tint="@color/gray"
                 app:srcCompat="@drawable/ic_vector_heart_stroke" />
+
+            <TextView
+                android:id="@+id/tvReply"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvName"
+                android:layout_alignParentStart="false"
+                android:layout_alignParentTop="false"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@id/ivProfileImage"
+                android:fontFamily="@font/helvetica55roman"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                android:visibility="gone" />
+
         </RelativeLayout>
     </com.google.android.material.card.MaterialCardView>
 </RelativeLayout>

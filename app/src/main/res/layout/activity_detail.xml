@@ -181,8 +181,8 @@
 
                     <ImageView
                         android:id="@+id/ivReplyPP"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
                         tools:srcCompat="@tools:sample/avatars" />
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -197,12 +197,14 @@
                         app:counterTextColor="@color/white"
                         app:hintTextColor="@color/gray">
 
-                        <com.google.android.material.textfield.TextInputEditText
+                        <EditText
+                            android:id="@+id/reply"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@color/twitter"
                             android:fontFamily="@font/helvetica55roman"
-                            android:hint="Tweet your reply"
+                            android:hint="@string/tweet_your_reply"
+                            android:inputType="textMultiLine"
                             android:textColor="@color/white"
                             android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
