@@ -51,7 +51,11 @@ public class DetailActivity extends AppCompatActivity {
         Glide.with(this).load(tweet.image).transform(new RoundedCorners(40)).into(binding.ivImageA);
         Glide.with(this).load(superUser.profileImageUrl).circleCrop().into(binding.ivReplyPP);
         binding.reply.setText("@"+tweet.user.screenName);
+        String time = tweet.getRelativeTimeAgo(tweet.createdAt);
+        binding.tvTime.setText(time);
+        liked(binding);
 
+        // Button to reply to a tweet
         binding.btnReply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +93,33 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
+        // Button to like a tweet
+        binding.ibLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                client.postFavorite(tweet.tweetId, tweet.favorited, new JsonHttpResponseHandler() {
+                    @Override
+                    public void onSuccess(int statusCode, Headers headers, JSON json) {
+                        tweet.favorited = !tweet.favorited;
+                        liked(binding);
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Headers headers, String response, Throwable throwable) {
+                        Log.e("DetailActivity", "onFailure onfavclick" + response, throwable);
+                    }
+                });
+            }
+        });
+
+    }
+
+    public void liked(ActivityDetailBinding binding){
+        if (tweet.favorited){
+            binding.ibLike.setImageResource(R.drawable.ic_vector_heart);
+        } else{
+            binding.ibLike.setImageResource(R.drawable.ic_vector_heart_stroke);
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

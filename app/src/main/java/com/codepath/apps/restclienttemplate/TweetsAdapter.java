@@ -90,6 +90,8 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
         ImageButton ibRetweet;
         ImageButton ibLike;
         TextView tvReply;
+        TextView tvRetweetC;
+        TextView tvLikeC;
 
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
@@ -104,6 +106,8 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
             ibRetweet = itemView.findViewById(R.id.ibRetweet);
             ibLike = itemView.findViewById(R.id.ibLike);
             tvReply = itemView.findViewById(R.id.tvReply);
+            tvRetweetC = itemView.findViewById(R.id.tvRetweetC);
+            tvLikeC = itemView.findViewById(R.id.tvLikeC);
         }
 
         public void bind(Tweet tweet) {
@@ -112,6 +116,8 @@ public class TweetsAdapter extends  RecyclerView.Adapter<TweetsAdapter.ViewHolde
             Glide.with(context).load(tweet.user.profileImageUrl).circleCrop().into(ivProfileImage);
             Glide.with(context).load(tweet.image).transform(new RoundedCorners(40)).into(ivTweetImage);
             tvName.setText(tweet.user.name);
+            tvRetweetC.setText(tweet.retweetC);
+            tvLikeC.setText(tweet.favoriteC);
             if (tweet.favorited){
                 ibLike.setImageResource(R.drawable.ic_vector_heart);
             } else{

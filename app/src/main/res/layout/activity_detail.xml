@@ -125,7 +125,7 @@
                         android:layout_marginStart="70dp"
                         android:layout_marginTop="5dp"
                         android:backgroundTint="#00FFFFFF"
-                        android:tint="@color/icon"
+                        android:tint="@color/gray"
                         app:srcCompat="@drawable/vector_compose_dm_fab" />
 
                     <ImageButton
@@ -137,8 +137,8 @@
                         android:layout_marginTop="5dp"
                         android:layout_toEndOf="@+id/ibReply"
                         android:backgroundTint="#00FFFFFF"
-                        android:tint="@color/icon"
-                        app:srcCompat="@drawable/ic_vector_retweet" />
+                        android:tint="@color/gray"
+                        app:srcCompat="@drawable/ic_vector_retweet_stroke" />
 
                     <ImageButton
                         android:id="@+id/ibLike"
@@ -149,8 +149,19 @@
                         android:layout_marginTop="5dp"
                         android:layout_toEndOf="@+id/ibRetweet"
                         android:backgroundTint="#00FFFFFF"
-                        android:tint="@color/icon"
+                        android:tint="@color/gray"
                         app:srcCompat="@drawable/ic_vector_heart_stroke" />
+
+                    <TextView
+                        android:id="@+id/tvTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/helvetica55roman"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        tools:text="5m" />
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
